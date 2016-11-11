@@ -17,7 +17,7 @@ module.exports = {
                 loader: "json"
             },
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: 'babel',//在webpack的module部分的loaders里进行配置即可
                 query: {
@@ -46,8 +46,13 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin("css/[name].css"),
-        new HtmlWebpackPlugin({inject:"body",template:'/public/indexTemplate.html'})
+        new HtmlWebpackPlugin({inject:"body",template:'./public/indexTemplate.html'})
     ],
+    //解决方案
+	resolve:{
+		root: [],
+		extensions:['','.js','.jsx']
+	},
     devServer: {
         contentBase: "./dist/index.html",//本地服务器所加载的页面所在的目录
         colors: true,//终端中输出结果为彩色
