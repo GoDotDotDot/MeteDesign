@@ -1,6 +1,6 @@
-import React from 'react'
-import '../../public/css/color.css'
-import './footer.css'
+import React from 'react';
+import '../../public/css/color.css';
+import './footer.css';
 
 class Footer extends React.Component {
     render() {
@@ -8,7 +8,7 @@ class Footer extends React.Component {
             <div className="foot">
                 <div className="foot--nav">
                     <div className="foot--help foot--logo">
-                        <img src="https://angular.cn/resources/images/logos/inverse/shield/shield-large.png" alt="" />
+                        <img src="/assets/images/logo.png" alt="" />
                         <span>METE DESIGN</span>
                     </div>
                     <div className="foot--help">
