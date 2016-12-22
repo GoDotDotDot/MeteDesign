@@ -1,0 +1,11 @@
+#color-panel ul{
+    float: left;
+    padding: 16px 0px;
+    display: block;
+    margin: 0px;
+    width: 25%;
+}
+#color-panel li{
+     margin-top: 0; 
+    margin-bottom: 0; 
+}

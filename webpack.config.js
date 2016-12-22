@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin =  require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     watch: true,
     devtool: "eval-source-map",
@@ -11,6 +11,13 @@ module.exports = {
     },
 
     module: {
+        // preLoaders: [
+        //     {
+        //         test: /\.(js|jsx)$/,
+        //         exclude: /node_modules/,
+        //         loader: 'eslint-loader'
+        //     },
+        // ],
         loaders: [
             {
                 test: /\.json$/,
@@ -40,27 +47,35 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style', 'css')
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                loader: 'url-loader?limit=8024&name=/assets/images/[name].[ext]'
             }
         ]
     },
     plugins: [
+       new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }),
         new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin("css/[name].css"),
-        new HtmlWebpackPlugin({inject:"body",template:'./public/indexTemplate.html'})
+      new ExtractTextPlugin("./css/[name].css"),
+        new HtmlWebpackPlugin({ inject: "body", template: './public/indexTemplate.html' })
     ],
     //解决方案
-	resolve:{
-		root: [],
-		extensions:['','.js','.jsx']
-	},
+    resolve: {
+        root: [],
+        extensions: ['', '.js', '.jsx']
+    },
     devServer: {
-        contentBase: "./dist/index.html",//本地服务器所加载的页面所在的目录
+        contentBase: "./dist",//本地服务器所加载的页面所在的目录
         colors: true,//终端中输出结果为彩色
         historyApiFallback: true,//不跳转
         inline: true,//实时刷新
         port: 80,
         historyApiFallback: true,
-        host:"0.0.0.0"
+        host: "0.0.0.0"
+    },
+    eslint: {
+        configFile: './.eslintrc'
     }
 }
 
